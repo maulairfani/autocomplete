@@ -1,7 +1,6 @@
 from GPT2_.inference import generate_text as gpt2_autocomplete
 from NGRAM.ngram import autocomplete as ngram_autocomplete
 import streamlit as st
-import numpy as np
 
 with open("data/en_US.twitter.txt", "r", encoding="utf-8") as file:
     data = file.read()
@@ -9,7 +8,7 @@ with open("data/en_US.twitter.txt", "r", encoding="utf-8") as file:
 st.title("Welcome to Autocomplete Website!")
 
 model = st.selectbox(
-    'Pilih model autocomplete',
+    'Pilih model autocomplete', 
     ('N-Gram', 'GPT-2'))
 num_suggestions = st.number_input("Masukkan jumlah suggestions", step=1, value=150)
 
@@ -41,3 +40,4 @@ if prompt := st.chat_input("Generate autocomplete..."):
         st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
+

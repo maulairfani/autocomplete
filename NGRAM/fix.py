@@ -1,6 +1,10 @@
 import re
 import nltk
+import random
 nltk.data.path.append('.')
+
+with open("data/en_US.twitter.txt", "r", encoding="utf-8") as f:
+    data = f.read()
 
 def split_to_sentences(data):
     sentences = data.split("\n")
@@ -27,6 +31,9 @@ def get_tokenized_data(data):
 def join_tokens_into_sentences(tokenized_data):
     sentences = [' '.join(tokens) for tokens in tokenized_data]
     return '\n'.join(sentences)  # Menggabungkan kalimat dengan baris baru (\n)
+
+tokenized_data = get_tokenized_data(data)
+kalimat_data = join_tokens_into_sentences(tokenized_data)
 
 # Fungsi untuk membuat n-grams dari data token
 def generate_ngrams(tokens, n):
@@ -90,3 +97,11 @@ def autocomplete(input_text, n, corpus, num_suggestions=5):
     
     return completed_sentence
 
+# Contoh penggunaan
+input_text = input("Masukkan kata awal (pisahkan dengan spasi): ")
+n = 3
+num_suggestions = int(input("Masukkan jumlah kata prediksi selanjutnya: "))
+
+completed_sentence = autocomplete(input_text, n, kalimat_data, num_suggestions)
+print("Autocomplete suggestions:")
+print(completed_sentence)

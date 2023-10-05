@@ -11,7 +11,7 @@ def load_tokenizer(tokenizer_path):
     return tokenizer
 
 # Function to generate text
-def generate_text(sequence, max_length, model_path="autocomplete_gpt2"):
+def generate_text(sequence, max_length, model_path="maulairfani/autocomplete_gpt2"):
 
     model = load_model(model_path)
     tokenizer = load_tokenizer("gpt2")
